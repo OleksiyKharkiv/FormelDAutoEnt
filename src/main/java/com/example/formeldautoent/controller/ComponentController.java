@@ -1,19 +1,20 @@
 package com.example.formeldautoent.controller;
 
+import com.example.formeldautoent.entity.Component;
+import com.example.formeldautoent.service.serviceImpl.ComponentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.formeldautoent.entity.Component;
 
 @RestController
 @RequestMapping("/components")
 public class ComponentController {
 
-    private final ComponentService componentService;
+    private final ComponentServiceImpl componentService;
 
     @Autowired
-    public ComponentController(ComponentService componentService) {
+    public ComponentController(ComponentServiceImpl componentService) {
         this.componentService = componentService;
     }
 
