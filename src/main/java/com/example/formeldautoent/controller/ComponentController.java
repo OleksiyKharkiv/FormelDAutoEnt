@@ -1,0 +1,31 @@
+package com.example.formeldautoent.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.example.formeldautoent.entity.Component;
+
+@RestController
+@RequestMapping("/components")
+public class ComponentController {
+
+    private final ComponentService componentService;
+
+    @Autowired
+    public ComponentController(ComponentService componentService) {
+        this.componentService = componentService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Component> getComponentById(@PathVariable Long id) {
+        Component component = componentService.getComponentById(id);
+        return ResponseEntity.ok(component);
+    }
+
+    @PostMapping
+    public ResponseEntity<Component> createComponent(@RequestBody Component component) {
+        Component createdComponent = componentService.createComponent(component);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdComponent);
+    }
+}
